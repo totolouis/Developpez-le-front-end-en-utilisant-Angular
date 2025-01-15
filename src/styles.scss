@@ -1,1 +1,87 @@
-/* You can add global styles to this file, and also import other style files */
+// Global styles for responsiveness
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  min-width: 100vw; // Ensure the full width is used
+}
+
+// Title styling (h1)
+h1 {
+  color: #2c3e50;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+
+  // Responsiveness
+  @media (max-width: 768px) {
+    font-size: 1.6rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.4rem;
+  }
+}
+
+// Paragraph styling (p)
+p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+
+  // Responsiveness
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+    margin-bottom: 1.2rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+}
+
+// List styling (ul and li)
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+li {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+
+  // Responsiveness
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.8rem;
+  }
+}
+
+span {
+  display: block;
+  margin-top: 2rem;
+  font-size: 1rem;
+  color: #2c3e50;
+
+  p {
+    margin: 0.5rem 0;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.8rem;
+  }
+}

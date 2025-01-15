@@ -12,6 +12,10 @@ const routes: Routes = [
     path: '**', // wildcard
     component: NotFoundComponent,
   },
+  // {
+  //   path: '/:id',
+  //   component: HomeComponent,
+  // }
 ];
 
 @NgModule({
