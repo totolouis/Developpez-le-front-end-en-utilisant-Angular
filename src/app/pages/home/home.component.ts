@@ -4,6 +4,7 @@ import {OlympicService} from 'src/app/core/services/olympic.service';
 import {OlympicCountryParticipations} from "../../core/models/Olympic";
 import {ChartConfiguration, ChartData, ChartEvent, ChartType} from "chart.js";
 import {DatasetPosition} from "../../core/models/Dataset";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -41,7 +42,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   protected readonly length = length;
   private subscription!: Subscription;
 
-  constructor(private olympicService: OlympicService) {
+  constructor(private olympicService: OlympicService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -80,7 +81,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     console.log(activePoints);
     console.log(active![0] as DatasetPosition);
     console.log((active![0] as DatasetPosition).index);
+    console.log(`details/${(active![0] as DatasetPosition).index}`);
     // It seems that we can get the index under active[0].index, it will be the index we can use to make the redirection to a country when clicking
+    this.router.navigateByUrl(`olympics/${(active![0] as DatasetPosition).index}`);
   }
 
   protected maximumNumberOfOlympics(): number {
