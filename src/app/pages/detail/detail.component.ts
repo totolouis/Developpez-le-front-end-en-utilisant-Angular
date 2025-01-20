@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {OlympicService} from "../../core/services/olympic.service";
 import {OlympicCountryParticipations} from "../../core/models/Olympic";
 import {ChartConfiguration, ChartData, ChartType} from "chart.js";
@@ -33,7 +33,7 @@ export class DetailComponent implements OnInit {
   };
   public lineChartType: ChartType = 'line';
 
-  constructor(private olympicService: OlympicService, private route: ActivatedRoute) {
+  constructor(private olympicService: OlympicService, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit() {
@@ -54,5 +54,9 @@ export class DetailComponent implements OnInit {
 
   getTotalAthletes(): number {
     return this.olympic?.participations.reduce((total, participation) => total + participation.athleteCount, 0) ?? 0;
+  }
+
+  goToPreviousPage(): void {
+    this.router.navigate(['']);
   }
 }
