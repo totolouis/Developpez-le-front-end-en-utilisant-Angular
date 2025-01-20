@@ -13,10 +13,8 @@ export class OlympicResolver implements Resolve<OlympicCountryParticipations | n
 
   resolve(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<OlympicCountryParticipations | null> {
-    // Based on an array index so that is why i need the plus 1
-    const id = +route.params['id'] + 1;
-    console.log('Resolving Olympic data for ID:', id);
+    _state: RouterStateSnapshot): Observable<OlympicCountryParticipations | null> {
+    const id = +route.params['id'];
     return this.olympicService.getOlympicById(id).pipe(
       filter(data => !!data),
       first());
