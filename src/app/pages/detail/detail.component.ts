@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {OlympicService} from "../../core/services/olympic.service";
 import {OlympicCountryParticipations} from "../../core/models/Olympic";
 import {ChartConfiguration, ChartData, ChartType} from "chart.js";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-detail',
@@ -33,7 +33,7 @@ export class DetailComponent implements OnInit {
   };
   public lineChartType: ChartType = 'line';
 
-  constructor(private olympicService: OlympicService, private route: ActivatedRoute, private router: Router) {
+  constructor(private location: Location, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit() {
@@ -57,6 +57,6 @@ export class DetailComponent implements OnInit {
   }
 
   goToPreviousPage(): void {
-    this.router.navigate(['']);
+    this.location.back();
   }
 }

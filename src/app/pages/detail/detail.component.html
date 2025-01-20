@@ -1,9 +1,15 @@
-<div class="container">
+<div>
   <h2>Pays : {{ olympic?.country }}</h2>
   <div class="entry-info">
-    <p> Number of entries : {{ olympic?.participations?.length }}</p>
-    <p> Total number medals : {{ getTotalMedals() }}</p>
-    <p>Total number of athletes : {{ getTotalAthletes() }}</p>
+    <div class="info-square">
+      <p>Number of entries : {{ olympic?.participations?.length }}</p>
+    </div>
+    <div class="info-square">
+      <p>Total number medals : {{ getTotalMedals() }}</p>
+    </div>
+    <div class="info-square">
+      <p>Total number of athletes : {{ getTotalAthletes() }}</p>
+    </div>
   </div>
   <div class="chart-container">
     <canvas

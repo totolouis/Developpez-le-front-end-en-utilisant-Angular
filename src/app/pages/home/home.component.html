@@ -1,34 +1,32 @@
-<h1>Olympic Insight</h1>
-<hr/>
-<div class="container">
-  <h1>Bienvenue sur <span class="highlight">Olympic Insight</span>! 🏅</h1>
-  <p>
-    Explorez l'histoire fascinante des Jeux Olympiques grâce à notre application interactive. Découvrez :
-  </p>
-  <ul>
-    <li><strong>Les participations des pays</strong> aux JO, année après année.</li>
-    <li><strong>Le nombre de médailles</strong> remportées par chaque pays, toutes catégories confondues.</li>
-  </ul>
-  <p>
-    <strong>Cliquez sur un pays</strong> de la liste pour accéder à des détails encore plus passionnants :
-  </p>
-  <ul>
-    <li>Les médailles remportées par édition des JO.</li>
-    <li>Les performances marquantes au fil des années.</li>
-  </ul>
-  <p>Plongez dans les archives olympiques et laissez-vous inspirer par les exploits sportifs du monde entier! 🌍🎉</p>
-</div>
-<span>
-  <p> Number of olympics : {{ this.maximumNumberOfOlympics() }}</p>
-  <p> Number of countries : {{ (olympics$ | async)?.length }}</p>
-</span>
-<div class="chart-container">
-  <canvas
-    (chartClick)="chartClicked($event)"
-    [data]="olympicsChartData"
-    [options]="pieChartOptions"
-    [type]="pieChartType"
-    baseChart
-  >
-  </canvas>
+<div>
+  <div class="entry-info">
+    <div class="info-square">
+      <p>
+        Explorez l'histoire fascinante des Jeux Olympiques grâce à notre application interactive. Découvrez :
+      </p>
+      <ul>
+        <li><strong>Les participations des pays</strong> aux JO, année après année.</li>
+        <li><strong>Le nombre de médailles</strong> remportées par chaque pays, toutes catégories confondues.</li>
+      </ul>
+      <p>
+        <strong>Cliquez sur un pays</strong> de la liste pour accéder à des détails encore plus passionnants !
+      </p>
+    </div>
+    <div class="info-square">
+      Number of olympics : {{ this.maximumNumberOfOlympics() }}
+    </div>
+    <div class="info-square">
+      Number of countries : {{ (olympics$ | async)?.length }}
+    </div>
+  </div>
+  <div class="chart-container">
+    <canvas
+      (chartClick)="chartClicked($event)"
+      [data]="olympicsChartData"
+      [options]="pieChartOptions"
+      [type]="pieChartType"
+      baseChart
+    >
+    </canvas>
+  </div>
 </div>
