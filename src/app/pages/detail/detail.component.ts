@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {OlympicService} from "../core/services/olympic.service";
-import {OlympicCountryParticipations} from "../core/models/Olympic";
+import {OlympicService} from "../../core/services/olympic.service";
+import {OlympicCountryParticipations} from "../../core/models/Olympic";
+import {ChartConfiguration, ChartData, ChartType} from "chart.js";
 
 @Component({
   selector: 'app-detail',
@@ -13,16 +14,38 @@ export class DetailComponent implements OnInit {
 
   olympic?: OlympicCountryParticipations;
 
+  olympicsData: ChartData<'line'> = {
+    labels: [],
+    datasets: []
+  };
+
+  public lineChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+    plugins: {
+      title: {
+        display: true,
+        text: 'Medals per olympic',
+      },
+      legend: {
+        display: false,
+      },
+    },
+  };
+  public lineChartType: ChartType = 'line';
+
   constructor(private olympicService: OlympicService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
     this.olympic = this.route.snapshot.data['olympic'];
     console.log(this.olympic);
-    // const olympicId = this.route.snapshot.params['id'] + 1;
-    // // TODO: handle beter the return of null
-    // this.olympic$ = this.olympicService.getOlympicById(olympicId);
-    // console.log(this.olympic$);
+    this.olympicsData = {
+      labels: this.olympic?.participations.map(value => value.year),
+      datasets: [
+        {
+          data: this.olympic?.participations.map(value => value.medalsCount) ?? []
+        }]
+    };
   }
 
   getTotalMedals(): number {

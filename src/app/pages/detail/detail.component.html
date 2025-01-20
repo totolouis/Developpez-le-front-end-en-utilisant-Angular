@@ -4,3 +4,12 @@
   <p> Total number medals : {{ getTotalMedals() }}</p>
   <p>Total number of athletes : {{ getTotalAthletes() }}</p>
 </span>
+<div class="chart-container">
+  <canvas
+    [data]="olympicsData"
+    [options]="lineChartOptions"
+    [type]="lineChartType"
+    baseChart
+  >
+  </canvas>
+</div>
