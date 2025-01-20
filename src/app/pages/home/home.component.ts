@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     active?: object[];
   }): void {
     const idFromIndex = (active![0] as DatasetPosition).index;
-    this.router.navigateByUrl(`olympics/${this.olympicsData[idFromIndex].id}`);
+    this.router.navigateByUrl(`${this.olympicsData[idFromIndex].id}`);
   }
 
   protected maximumNumberOfOlympics(): number {

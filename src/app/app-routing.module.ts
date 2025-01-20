@@ -7,14 +7,14 @@ import {OlympicResolver} from "./core/resolvers/olympic.resolver";
 
 const routes: Routes = [
   {
-    path: 'olympics/:id',
+    path: ':id',
     component: DetailComponent,
     resolve: {
       olympic: OlympicResolver
     }
   },
   {
-    path: 'olympics',
+    path: '',
     component: HomeComponent,
   },
   {
