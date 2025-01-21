@@ -73,19 +73,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     event?: ChartEvent;
     active?: object[];
   }): void {
-    const idFromIndex = (active![0] as DatasetPosition).index;
-    this.router.navigateByUrl(`${this.olympicsData[idFromIndex].id}`);
+    const olympicId = this.olympicsData[(active![0] as DatasetPosition).index].id
+    this.router.navigateByUrl(`${olympicId}`);
   }
 
   protected maximumNumberOfOlympics(): number {
-    // TODO: find a better way to check if observable got data
-    if (this.olympicsChartData.datasets[0]) {
-      for (var i = 0, maxNumber = 0; i < this.olympicsChartData.labels!.length; i++) {
-        if (this.olympicsChartData!.datasets![0].data[i] > maxNumber) {
-          maxNumber = this.olympicsChartData!.datasets![0].data[i];
-        }
-      }
-      return maxNumber;
+    const datasets = this.olympicsChartData?.datasets;
+    if (datasets && datasets[0] && datasets[0].data && this.olympicsChartData.labels) {
+      return datasets[0].data.reduce((max, current) => Math.max(max, current), 0);
     }
     return 0;
   }

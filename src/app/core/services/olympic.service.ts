@@ -1,6 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, filter, map, Observable, of} from 'rxjs';
+import {BehaviorSubject, map, Observable, of} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {OlympicCountryParticipations} from "../models/Olympic";
 
@@ -31,19 +31,14 @@ export class OlympicService {
   }
 
   getOlympicById(id: number): Observable<OlympicCountryParticipations> {
-    console.log('getOlympicById', id);
-    console.log(this.olympics$.value);
     return this.olympics$.pipe(
       map(olympics => olympics.find(value => value.id === id)),
-      filter(olympic => olympic !== null && olympic !== undefined)
+      map(olympic => {
+        if (!olympic) {
+          throw new Error(`${id} not found`);
+        }
+        return olympic;
+      }),
     );
-  }
-
-  getParticipationsById(olympicId: number) {
-    return this.olympics$.pipe(
-      map(olympics => {
-        const olympic = olympics.find(value => value.id === olympicId);
-        return olympic ? olympic.participations : [];
-      }));
   }
 }
