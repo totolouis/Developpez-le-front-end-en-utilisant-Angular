@@ -1,14 +1,16 @@
 <div>
-  <h2>Pays : {{ olympic?.country }}</h2>
-  <div class="entry-info">
+  <div class="flex-container">
+    <h2 class="title">{{ olympic?.country }}</h2>
+  </div>
+  <div class="flex-container">
     <div class="info-square">
-      <p>Number of entries : {{ olympic?.participations?.length }}</p>
+      <p>Number of entries<br/><b>{{ olympic?.participations?.length }}</b></p>
     </div>
     <div class="info-square">
-      <p>Total number medals : {{ getTotalMedals() }}</p>
+      <p>Total number medals<br/><b>{{ getTotalMedals() }}</b></p>
     </div>
     <div class="info-square">
-      <p>Total number of athletes : {{ getTotalAthletes() }}</p>
+      <p>Total number of athletes<br/><b>{{ getTotalAthletes() }}</b></p>
     </div>
   </div>
   <div class="chart-container">

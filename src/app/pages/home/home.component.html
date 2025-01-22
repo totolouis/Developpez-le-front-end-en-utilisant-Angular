@@ -1,22 +1,13 @@
 <div>
-  <div class="entry-info">
+  <div class="flex-container">
+    <h2 class="title"> Medals per Country</h2>
+  </div>
+  <div class="flex-container">
     <div class="info-square">
-      <p>
-        Explorez l'histoire fascinante des Jeux Olympiques grâce à notre application interactive. Découvrez :
-      </p>
-      <ul>
-        <li><strong>Les participations des pays</strong> aux JO, année après année.</li>
-        <li><strong>Le nombre de médailles</strong> remportées par chaque pays, toutes catégories confondues.</li>
-      </ul>
-      <p>
-        <strong>Cliquez sur un pays</strong> de la liste pour accéder à des détails encore plus passionnants !
-      </p>
+      Number of olympics<br/><b>{{ this.maximumNumberOfOlympics() }}</b>
     </div>
     <div class="info-square">
-      Number of olympics : {{ this.maximumNumberOfOlympics() }}
-    </div>
-    <div class="info-square">
-      Number of countries : {{ (olympics$ | async)?.length }}
+      Number of countries<br/><b>{{ (olympics$ | async)?.length }}</b>
     </div>
   </div>
   <div class="chart-container">
