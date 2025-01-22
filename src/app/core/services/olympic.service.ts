@@ -15,7 +15,7 @@ export class OlympicService {
   }
 
   loadInitialData() {
-    return this.http.get<any>(this.olympicUrl).pipe(
+    return this.http.get<OlympicCountryParticipations[]>(this.olympicUrl).pipe(
       tap((value) => this.olympics$.next(value)),
       catchError((error, caught) => {
         console.error(error);
