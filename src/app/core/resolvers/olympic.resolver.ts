@@ -18,8 +18,7 @@ export class OlympicResolver implements Resolve<OlympicCountryParticipations | n
     _state: RouterStateSnapshot): Observable<OlympicCountryParticipations | null> {
     const id = +route.params['id'];
     return this.olympicService.getOlympicById(id).pipe(
-      catchError((error) => {
-        // TODO: faire une meilleure redirection sur une page not-found
+      catchError((_error) => {
         this.router.navigate(['/']);
         return of(null);
       })

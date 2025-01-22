@@ -34,11 +34,9 @@ export class DetailComponent implements OnInit {
   public lineChartType: ChartType = 'line';
 
   constructor(private location: Location, private route: ActivatedRoute, private router: Router) {
-    console.log('IN CONSTR')
   }
 
   ngOnInit() {
-    console.log('insidfe');
     this.olympic = this.route.snapshot.data['olympic'];
     this.olympicsData = {
       labels: this.olympic?.participations.map(value => value.year),
