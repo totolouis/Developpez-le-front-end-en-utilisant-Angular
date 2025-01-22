@@ -19,7 +19,6 @@ export class OlympicService {
       tap((value) => this.olympics$.next(value)),
       catchError((error, caught) => {
         console.error(error);
-        // notificationService.showError(...);
         this.olympics$.next([]);
         return of([]);
       })
