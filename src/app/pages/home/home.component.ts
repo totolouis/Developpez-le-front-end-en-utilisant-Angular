@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     labels: [],
     datasets: []
   };
-  // Pie
+
   public pieChartOptions: ChartConfiguration['options'] = {
     responsive: true,
     plugins: {
@@ -44,7 +44,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.olympics$ = this.olympicService.getOlympics();
-    // Pas utile de faire une subscription si on utilise pas la data en dehors de la template, donc a voir si on manipule mais pour línstant cest overkill.
     this.subscription = this.olympics$.subscribe(data => {
       if (data && data.length > 0) {
         this.olympicsData = data;
