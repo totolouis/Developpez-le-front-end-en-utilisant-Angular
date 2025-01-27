@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown>
+					## Projet Olympic
+				</section>
+				<section data-markdown>
+					## Présentation
+					
+					- Démo de l'application
+					- Librairie graphique : <code>ng2-charts</code>
+					- Structure du projet
+				</section>
+				<section data-markdown>
+					## Démo
+				</section>
+				<section>
+					<h2>La librairie ng2-charts</h2>
+					<p>Un choix de part son utilisation et sa taille réduite.</p>
+					<img src="npm_trends.jpg" width="70%">
+				</section>
+				<section>
+					<p>Librairie qui est en réalité un wrapper de directive angular de Chart.js.</p>
+					<img src="chartjs.jpg" width="70%">
+				</section>
+				<section>
+					<p>Utilisation simple & rapide</p>
+					<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers="|3-6|8-21|27-34"><script type="text/template">
+						export class HomeComponent implements OnInit, OnDestroy {
+
+							olympicsChartData: ChartData<'pie'> = {
+							  labels: [],
+							  datasets: []
+							};
+							
+							public pieChartOptions: ChartConfiguration['options'] = {
+							  responsive: true,
+							  plugins: {
+								title: {
+								  display: true,
+								  text: 'Medals per country',
+								},
+								legend: {
+								  display: true,
+								  position: 'top',
+								},
+							  },
+							};
+							public pieChartType: ChartType = 'pie';
+							
+							ngOnInit(): void {
+							  this.subscription = this.olympics$.subscribe(data => {
+								if (data && data.length > 0) {
+								  this.olympicsData = data;
+								  this.olympicsChartData = {
+									labels: data.map(item => item.country),
+									datasets: [
+									  {
+										data: data.map(item => item.participations.length),
+									  }
+									]
+								  }
+								}
+							  })
+							}
+
+							...}
+					</script></code></pre>
+				</section>
+				<section>
+					<p>La directive pour le HTML du component</p>
+					<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers=""><script type="text/template">
+						<div class="chart-container">
+							<canvas
+							  (chartClick)="chartClicked($event)"
+							  [data]="olympicsChartData"
+							  [options]="pieChartOptions"
+							  [type]="pieChartType"
+							  baseChart
+							>
+							</canvas>
+						  </div>
+					</script></code></pre>
+				</section>
+				<section data-markdown>
+					## Structure du projet
+					- Resolver
+					- Service
+					- Pages
+					- Modèles
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
