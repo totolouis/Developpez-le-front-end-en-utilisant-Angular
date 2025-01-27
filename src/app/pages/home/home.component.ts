@@ -24,13 +24,20 @@ export class HomeComponent implements OnInit, OnDestroy {
   public pieChartOptions: ChartConfiguration['options'] = {
     responsive: true,
     plugins: {
-      title: {
-        display: true,
-        text: 'Medals per country',
-      },
       legend: {
         display: true,
-        position: 'top',
+        position: 'bottom',
+      },
+      tooltip: {
+        displayColors: false,
+        bodyColor: 'white',
+        backgroundColor: '#04838F',
+        callbacks: {
+          label: function (tooltipItem) {
+            let defaultLabel = tooltipItem.raw;
+            return `🏅 ${defaultLabel}`;
+          },
+        },
       },
     },
   };
@@ -52,7 +59,8 @@ export class HomeComponent implements OnInit, OnDestroy {
           datasets: [
             {
               data: data.map(item => item.participations.length),
-            }
+              backgroundColor: ["#714052", "#8ea0d6", "#93819f", "#c5dfef", "#bccae4", "#8d6266"],
+            },
           ]
         }
       }
